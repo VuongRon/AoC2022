@@ -4,15 +4,9 @@ let data = fs.readFileSync("./problem1input").toString().split("\r\n");
 data = data.map((line) => line.split(""));
 
 const treesVisible = (treeHeight, treeLine) => {
-  if (treeLine.length === 0) return 0;
   if (treeLine.length === 1) return 1;
-  let count = 0;
-  for (let i = 0; i < treeLine.length; i++) {
-    count++;
-    if (treeLine[i] < treeHeight) continue;
-    break;
-  }
-  return count;
+  const count = treeLine.findIndex((i) => i >= treeHeight);
+  return count >= 0 ? count + 1 : treeLine.length;
 };
 let maxScenicScore = 0;
 
